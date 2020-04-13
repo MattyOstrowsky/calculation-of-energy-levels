@@ -1,0 +1,161 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 19.05.7 ] */
+/* [wxMaxima: title   start ]
+Maxima: ODE
+   [wxMaxima: title   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Rozwiązywanie równań różniczkowych metodą ode2 --- krótki wstęp.
+
+
+Zapiszmy następujące równanie opisujące pochłanianie promieniowania:
+ΔI = - α * I * Δx
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+rown: 'diff(I,x) = - I*%alpha;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Do znalezienia rozwiązania wykorzystajmy polecenie ode2
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+rozw_og_rown : ode2(rown, I, x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Do uwzględnienia warunków (w tym przypadku warunku początkowego) używamy odpowiedniego
+polecenia --- do warunku początkowego w równaniu 1-go rzędu mamy polecenie "ic1" (ic --- 'initial condition'):
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+rozw_rown : ic1(rozw_og_rown, x=0, I=I_0);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Zamiast I_0 można napisać I[0] --- to też zadziała jak indeks dolny.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+rozw_rown : ic1(rozw_og_rown, x=0, I=I[0]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+A teraz inny przykład (ruch harmoniczny):
+
+
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+rown2: m*'diff(x,t,2) = - k*x;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Podajemy założenia dla stąłej sprężystości (k) i masy (m).
+Jeśi tergo nie zrobimy Maxima będzie o to pytała.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+assume(k>0, m>0);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Do znalezienia rozwiązania wykorzystajmy polecenie ode2.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+rozw_og_rown2 : ode2(rown2, x, t);
+/* [wxMaxima: input   end   ] */
+/* [wxMaxima: answer  start ] */
+p;
+/* [wxMaxima: answer  end   ] */
+
+
+/* [wxMaxima: comment start ]
+Do uwzględnienia warunków (w tym przypadku warunków początkowego) używamy odpowiedniego
+polecenia --- do warunku początkowego w równaniu 2-go rzędu mamy polecenie "ic2" (ic --- 'initial condition'):
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+rozw_rown2 : ic2(rozw_og_rown2, t=0, x=2, 'diff(x, t)=0);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+rozw_rown2, t = 0;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+xR : rhs(rozw_rown2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+v : diff(xR, t);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+v, t = 0;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+Zadanie: Rodzina promieniotwórcza
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Zadanie o rodzinie promieniotwórczej:
+Dany jest nuklid promieniotwórczy N_1, którego w chwili początkowej (t_0 = 0) mamy N_10, 
+rozpada się on (ze stałą rozpadu lambda_1) tworząc nuklid N_2 (dla t_0 = 0 było go N_20).
+Ten z kolei rozpada się ze stałą rozpadu lambda_2, 
+tworząc nuklid N_3 (dla t_0 = 0 było go N_30), 
+który ze stałą lambda_3 daje N_4 (dla t_0 = 0 było go N_40). Czwarty nuklid jest stabilny.
+
+a) Wyznaczyć zależności od czasu dla N_1, N_2, N_3, N_4.
+
+b) Podobnie jak w a), ale przyjąć, że dla t=0 mamy tylko nuklid promieniotwórczy N_1.
+    (N_10 = 1000, N_20 = 0, N_30 = 0, N_40 = 0)
+
+c) Zależności otrzymane w b) pokazać na wspólnym wykresie.
+    Przyjmijmy tu, że:
+    λ_1 = 100, λ_2 = 5, λ_3 = 150;
+
+Dla chętnych: Czwarty nuklid rozpada się ze stałą rozpadu lambda_4, 
+tworząc nuklid N_5 (dla t_0 = 0 było go N_50). Piąty nuklid jest stabilny.
+Dalej analogicznie jak w a) b) c) (załóżmy, że λ_4 = 10)
+
+Uwaga: Maxima może zadawać pytania o znaki kilku wyrażeń.
+I pytania te mogą się, niestety, powtarzać...
+
+Uwaga: Program powinien działać poprawnie dla innych wartości stałych rozpadu.
+Ich wartości, podobnie jak N_...0 dla t=0, mają być określane tylko w jednym miejscu programu.
+   [wxMaxima: comment end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 19.05.7"$
