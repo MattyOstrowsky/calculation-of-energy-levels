@@ -1,0 +1,12 @@
+library(dplyr)
+x <-unlist(select(read.table("~/Dokumenty/wyniki.txt", sep=""),2),use.names = FALSE)
+breakss <- 10
+pdf(paste('wwykres','_',breakss,'.','pdf',sep=""))
+h <- hist(x, breaks=breakss,ylab='liczba zliczeń w przedziale', main=paste('wartosc srednia = ',mean(x, na.rm = TRUE),'\n odchylenie standardowe = ',sd(x,na.rm=TRUE)))
+h
+dev.off() 
+h$count
+
+
+
+
