@@ -1,0 +1,51 @@
+xvalues <- c(8.3,9.1,9.9,10.6,11,11.7)
+yvalues <- c(0.0021621,0.0023782,0.0025967,0.0027898,0.0029011,0.0030971)
+pdf("wykres1.pdf")
+plot(xvalues,yvalues,xlab = "Natężenie prądu[A]", ylab = "Indukcja magnetyczna[T]")
+model <- nls(yvalues ~ b1*xvalues+b2,start = list(b1 = 1,b2 = 3))
+new.data <- data.frame(xvalues = seq(min(xvalues),max(xvalues),len = 100))
+lines(new.data$xvalues,predict(model,newdata = new.data))
+dev.off()
+
+# wykres zależności indukcji magnetycznej od natężenia prądu przy stałym napięciu 130V.
+# Dane z doświadczenia przeprowadzonego na zajęciach fizyki doświadczalnej. 
+
+
+xvalues <- c(0.03, 0.07, 0.10, 0.14,0.17, 0.20, 0.24,0.28)
+yvalues <- c(0.1494,0.2988,0.4482,0.5976,0.747,0.8964,1.0458,1.1952)
+pdf("wykres2.pdf")
+plot(xvalues,yvalues,xlab = "masa obciążenia[g]", ylab = "wychylenie belki[m]")
+model <- nls(yvalues ~ b1*xvalues+b2,start = list(b1 = 1,b2 = 3))
+new.data <- data.frame(xvalues = seq(min(xvalues),max(xvalues),len = 100))
+lines(new.data$xvalues,predict(model,newdata = new.data))
+dev.off()
+
+# wykres zależności obciążenia od wychylenia belki 
+#dane z doswiadczenia przeprowadzonego na zajeciach fizyki doświadczalnej.
+
+
+library("COVID19")
+w<-covid19(
+  country = "Poland",
+  level = 1,
+  start = "2020-02-01",
+  end = "2020-05-01",
+  raw = FALSE,
+  vintage = FALSE,
+  verbose = TRUE,
+  cache = TRUE,
+  wb = NULL,
+  gmr = NULL,
+  amr = NULL
+)
+x<-w$deaths
+y<-w$confirmed
+df<- data.frame(x,y)
+m <- nls(y ~ exp(x*b), data = df, start = list(b=1), trace = T)
+pdf("wykres3.pdf")
+plot(x = w$confirmed, y = w$deaths,
+     xlab = "data", ylab = "", col = "red")
+new.data <- data.frame(x = seq(min(x),max(x),len = 10000))
+lines(new.data$x,predict(m,newdata = new.data))
+dev.off() 
+
