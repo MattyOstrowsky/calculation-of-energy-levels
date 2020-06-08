@@ -28,8 +28,8 @@ library("COVID19")
 w<-covid19(
   country = "Poland",
   level = 1,
-  start = "2020-02-01",
-  end = "2020-05-01",
+  start = "2020-02-15",
+  end = "2020-04-01",
   raw = FALSE,
   vintage = FALSE,
   verbose = TRUE,
@@ -38,14 +38,14 @@ w<-covid19(
   gmr = NULL,
   amr = NULL
 )
-x<-w$deaths
-y<-w$confirmed
-df<- data.frame(x,y)
-m <- nls(y ~ exp(x*b), data = df, start = list(b=1), trace = T)
+yy<-w$confirmed
+xx<-seq(1,47)
 pdf("wykres3.pdf")
-plot(x = w$confirmed, y = w$deaths,
-     xlab = "data", ylab = "", col = "red")
-new.data <- data.frame(x = seq(min(x),max(x),len = 10000))
-lines(new.data$x,predict(m,newdata = new.data))
+plot(x = xx, y = yy,xlab = "data", ylab = "confirmed", col = "red")
+model <- nls(yy ~ 2^(xx*b1),start = list(b1 = 1))
+new.data <- data.frame(xvalues = seq(min(xx),max(xx),len = 47))
+lines(xx ,predict(model,newdata = new.data))
 dev.off() 
 
+# wykres potwierdzonych zarażeń koronawirusem od czasu korzystając z pakietu COVID19
+# Nie wiem jak zmienić oś X, ponieważ jeśli na osi X jest data to nie można wyliczyć dopasowania krzywej.
