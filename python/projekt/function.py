@@ -146,11 +146,13 @@ def zapis(wart, wekt):
         for i, x in enumerate(wart):
             plik.write("wartosc wlasna : " + str(x) + "\n"+ "wektor wlasny : " + str(wekt[i]) + "\n\n")
 
-
-
-
-
-
+def AlGaAs(dane, pp):
+    Eg = float(dane[3]) * pp[1].przerwa_energ + (1-float(dane[3])) * pp[0].przerwa_energ-float(dane[3]) * (1-float(dane[3])) * (-0.127 + 1.310 * float(dane[3]))
+    Ev =  float(dane[3]) * pp[1].kraw_pasm_walenc + (1-float(dane[3])) * pp[0].kraw_pasm_walenc
+    me = float(dane[3]) * pp[1].masa_efekt_elektron + (1-float(dane[3])) * pp[0].masa_efekt_elektron
+    mhh = float(dane[3]) * pp[1].masa_efekt_ciezkiej_dziury + (1-float(dane[3])) * pp[0].masa_efekt_ciezkiej_dziury
+    mlh = float(dane[3]) * pp[1].masa_efekt_lekkiej_dziury + (1-float(dane[3])) * pp[0].masa_efekt_lekkiej_dziury
+    pp.append(Polprzewodnik("AlGaAs", Eg, Ev, me, mhh, mlh))
 
 
 
