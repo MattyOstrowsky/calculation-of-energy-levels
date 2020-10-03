@@ -6,10 +6,13 @@ class Engine:
         self.compression = compression
 
     def __del__(self) -> print:
-        return print("Obiekt usunięty!")
+        return print("the object has been removed!")
 
     def introduce(self) -> str:
-        return 'liczba cylindrów: ' + str(self.cylinders) + '\nmoc: ' + str(self.power) + '\npojemość: ' + str(self.capacity) + '\ncompresja: ' + str(self.compression)
+        return ('number of cylinders: ' + str(self.cylinders) +
+                '\n power: ' + str(self.power) +
+                '\n capacity: ' + str(self.capacity) +
+                '\n compression: ' + str(self.compression))
 
     def set_cylinders(self, cylinders: int) -> None:
         self.cylinders = cylinders
@@ -31,15 +34,16 @@ class Gasoline(Engine):
         self.octane = octane
 
     def __del__(self) -> print:
-        return print("Silnik benzynowy usunięty!")
+        return print("gasoline engine has been removed!")
 
     def introduce(self) -> str:
-        return super().introduce() + '\nliczba zaworów: ' + str(self.valves) + '\nliczba oktanów: ' + str(self.octane)
+        return (super().introduce() + '\n number of valves: ' + str(self.valves) +
+                '\n number of octanes: ' + str(self.octane))
 
-    def set_valves(self,valves: int) -> None:
+    def set_valves(self, valves: int) -> None:
         self.valves = valves
 
-    def set_octane(self,octane: int) -> None:
+    def set_octane(self, octane: int) -> None:
         self.octane = octane
 
 
@@ -50,10 +54,11 @@ class Diesel(Engine):
         self.turbo = turbo
 
     def __del__(self) -> print:
-        return print("Silnik diesela usunięty!")
+        return print("diesel engine has been removed!")
 
     def introduce(self) -> str:
-        return super().introduce() + '\nemisja CO2: ' + str(self.emission_co2) + '\nturbosprężarka: ' + str(self.turbo)
+        return (super().introduce() + '\n emission CO2: ' + str(self.emission_co2) +
+                '\n turbocharger: ' + str(self.turbo))
 
     def set_emission(self, emission: float) -> None:
         self.emission_co2 = emission
