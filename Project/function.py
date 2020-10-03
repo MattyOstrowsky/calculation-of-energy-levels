@@ -3,7 +3,10 @@ import scipy.linalg as la
 
 
 class Semiconductor:
-    def __init__(self, name, energy_break, edge_of_valence_band, effective_mass_of_electron,
+    def __init__(self, name,
+                 energy_break, 
+                 edge_of_valence_band, 
+                 effective_mass_of_electron,
                  effective_mass_of_heavy_holes,
                  effective_mass_of_light_holes):
         self.name = name
@@ -13,7 +16,7 @@ class Semiconductor:
         self.effective_mass_of_heavy_holes = effective_mass_of_heavy_holes
         self.effective_mass_of_light_holes = effective_mass_of_light_holes
 
-    def display(self):
+    def display(self) -> print():
         print("\n" + "name:" + str(self.name) + "\n" +
               "effective mass of heavy holes = " + str(self.energy_break) + "\n" +
               "edge of valence band = " + str(self.edge_of_valence_band) + "\n" +
@@ -22,7 +25,7 @@ class Semiconductor:
               "effective mass of light holes = " + str(self.effective_mass_of_light_holes) + "\n")
 
 
-def load():
+def load() -> list:
     x = []
     with open('structure.txt') as file:
         next(file)
@@ -31,7 +34,7 @@ def load():
     return x
 
 
-def Ev(struct, z, semiconductor):
+def Ev(struct, z, semiconductor) -> float:
     if z < float(struct[0][-1]):
         for i in semiconductor:
             if struct[0][1] == str(i.name):
@@ -46,7 +49,7 @@ def Ev(struct, z, semiconductor):
                 return i.edge_of_valence_band
 
 
-def Eg(struct, z, semiconductor):
+def Eg(struct, z, semiconductor) -> float:
     if z < float(struct[0][-1]):
         for i in semiconductor:
             if struct[0][1] == str(i.name):
@@ -61,7 +64,7 @@ def Eg(struct, z, semiconductor):
                 return i.energy_break
 
 
-def mass_effective(struct, z, semiconductor):
+def mass_effective(struct, z, semiconductor) -> float:
     if z < float(struct[0][-1]):
         for i in semiconductor:
             if struct[0][1] == str(i.name):
@@ -80,7 +83,7 @@ def Ec(struct, z, semiconductor):
     return Ev(struct, z, semiconductor) + Eg(struct, z, semiconductor)
 
 
-def energy_level(structure, semiconductor) -> object:
+def energy_level(structure, semiconductor) -> tuple:
     # siatka
     dz = 0.1  # odleglość między punktami siatki (jednostka: nm)
     zTot = 30.  # całkowita grubość structury (jednostka: nm)
@@ -137,7 +140,7 @@ def energy_level(structure, semiconductor) -> object:
     return eigenvalues.real, eigenvectors
 
 
-def data(value, vector, struct):
+def data(value, vector, struct) -> tuple:
     eigenvalues = []
     eigenvectors = []
     for x, i in enumerate(value):
