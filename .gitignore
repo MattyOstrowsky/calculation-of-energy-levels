@@ -1,2 +1,8 @@
 
 .idea/
+
+.vscode/settings.json
+
+nowoczesnemetodyprogramowania/__pycache__/
+
+tests/__pycache__/

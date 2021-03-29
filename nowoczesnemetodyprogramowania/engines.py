@@ -67,19 +67,18 @@ class Diesel(Engine):
         self.turbo = turbo
 
 
-w1 = Diesel(10, True)
-w1.set_compression(10)
-w1.set_capacity(5)
-w1.set_power(150)
-w1.set_cylinders(4)
-w1.set_turbo(False)
-print(w1.introduce())
-del w1
+# w1 = Diesel(10, True)
+# w1.set_compression(10)
+# w1.set_capacity(5)
+# w1.set_power(150)
+# w1.set_cylinders(4)
+# w1.set_turbo(False)
+# print(w1.introduce())
+# 
+# w2 = Gasoline(20, 100)
+# w2.set_power(200)
+# w2.set_cylinders(8)
+# w2.set_compression(10)
+# w2.set_capacity(6210)
+# print(w2.introduce())
 
-w2 = Gasoline(20, 100)
-w2.set_power(200)
-w2.set_cylinders(8)
-w2.set_compression(10)
-w2.set_capacity(6210)
-print(w2.introduce())
-del w2
