@@ -1,4 +1,4 @@
-from Project.function import load,Semiconductor,AlGaAs,energy_level,data,save
+from function import load, Semiconductor, AlGaAs, energy_level, data, save
 
 structure = load()
 
