@@ -1,6 +1,6 @@
 # Calculation of energy levels
 
-<img align="right" width="33%" src="https://cdn-icons.flaticon.com/png/512/3658/premium/3658207.png?token=exp=1636211377~hmac=b9d1579e0007bd506a8abeff161d1ea1">
+<img align="right" width="20%" src="https://github.com/gunater/calculation-of-energy-levels/blob/master/assets/icons8-energy-100.png">
 
 ## Table of contents
 
@@ -68,3 +68,4 @@ Process finished with exit code 0
 ## License
 All code is licensed under an MIT license. This allows you to re-use the code freely, remixed in both commercial and non-commercial projects. The only requirement is to include the same license when distributing.
 
+<a target="_blank" href="https://icons8.com/icon/fbd9wHvko52P/energy">Energy</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
